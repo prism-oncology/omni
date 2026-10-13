@@ -68,7 +68,7 @@ python eval/eval_thunder.py --model base --datasets mhist --tasks knn linear_pro
 Python 3.10 or later is required.
 
 ```bash
-git clone <this-repo> && cd omni
+git clone https://github.com/prism-oncology/omni.git && cd omni
 pip install -e .
 ```
 
