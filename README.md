@@ -3,7 +3,7 @@
 
 <div align="center">
 
-<a href="https://sofiene-boutaj.github.io/omni-projectpage/"><img src="https://img.shields.io/badge/OMNI-Project_Page-e85d88.svg" alt="Project Page" /></a>
+<a href="https://sofiene-boutaj.github.io/omni/"><img src="https://img.shields.io/badge/OMNI-Project_Page-e85d88.svg" alt="Project Page" /></a>
 [![Paper](https://img.shields.io/badge/OMNI-arXiv.2610.12574-purple.svg)](https://arxiv.org/abs/2610.12574)
 [![Models](https://img.shields.io/badge/HuggingFace-models-yellow.svg)](https://huggingface.co/collections/sofieneb/omni-models)
 [![Datasets](https://img.shields.io/badge/HuggingFace-datasets-yellow.svg)](https://huggingface.co/collections/sofieneb/pathology-foundation-model-features)
