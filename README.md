@@ -16,8 +16,36 @@
 **Published at NeurIPS 2026 Main Track**
 </div>
 
-
 OMNI distills **10 pathology foundation models** into a single compact vision encoder. Instead of compressing all teachers into one CLS token, the student learns **one token per teacher**, using a structured attention mask, Mixture-of-Experts (MoE) layers and a per-teacher contrastive loss. This lets distillation keep improving as more teachers are added. The resulting models match or outperform their much larger teachers on 39 tile- and slide-level tasks.
+
+## 🤗 Pre-extracted features
+
+We release patch features of several pathology foundation models for **~11.7k whole-slide images** from TCGA (32 projects) and CPTAC (9 cohorts, matching [Patho-Bench](https://github.com/mahmoodlab/Patho-Bench)), extracted with [TRIDENT](https://github.com/mahmoodlab/TRIDENT) at 20X. They can be used directly for slide-level tasks such as MIL, without downloading the raw slides. All datasets are in the [Hugging Face collection](https://huggingface.co/collections/sofieneb/pathology-foundation-model-features):
+
+| Encoder | Dim | Patch size | Dataset |
+| ------- | --- | ---------- | ------- |
+| CONCH v1.5 | 768 | 512 px | [sofieneb/conch_v15_features](https://huggingface.co/datasets/sofieneb/conch_v15_features) |
+| UNI2-h | 1536 | 256 px | [sofieneb/uni2h_features](https://huggingface.co/datasets/sofieneb/uni2h_features) |
+| Virchow2 | 2560 | 224 px | [sofieneb/virchow2_features](https://huggingface.co/datasets/sofieneb/virchow2_features) |
+
+**More encoders are coming soon.**
+
+Each repository is organised by cohort (`TCGA/<project>/` and `CPTAC/<cohort>/`), with one `.h5` file per slide containing `features` and `coords`. Download a single cohort with `--include`:
+
+```bash
+hf download sofieneb/uni2h_features --repo-type dataset \
+  --include "TCGA/TCGA-BRCA/*" --local-dir ./uni2h_features
+```
+
+or several cohorts at once, for example NSCLC (LUAD + LUSC):
+
+```bash
+hf download sofieneb/uni2h_features --repo-type dataset \
+  --include "TCGA/TCGA-LUAD/*" "TCGA/TCGA-LUSC/*" --local-dir ./uni2h_features
+```
+
+See each dataset card for the list of cohorts, slide counts and Python examples.
+
 
 ## 🤗 Pretrained models
 
@@ -40,9 +68,11 @@ embedding = model(x)                                    # (B, 768): average of t
 out = model(x, return_teacher_tokens=True)              # + out["teacher_tokens"]: (B, 10, 768)
 ```
 
-## Evaluation
+### Evaluation
 
-The evaluation script is in [`eval/eval_thunder.py`](eval/eval_thunder.py). Install THUNDER and set its data folder, where datasets, embeddings and results are stored:
+The evaluation script is in [`eval/eval_thunder.py`](eval/eval_thunder.py). It uses the same THUNDER configuration as the paper (official splits, fixed seeds and default hyper-parameters), so the tile-level results reported in the paper are **fully reproducible** with the released weights.
+
+Install THUNDER and set its data folder, where datasets, embeddings and results are stored:
 
 ```bash
 pip install thunder-bench
