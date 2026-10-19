@@ -27,6 +27,7 @@ We release patch features of several pathology foundation models for **~11.7k wh
 | CONCH v1.5 | 768 | 512 px | [sofieneb/conch_v15_features](https://huggingface.co/datasets/sofieneb/conch_v15_features) |
 | UNI2-h | 1536 | 256 px | [sofieneb/uni2h_features](https://huggingface.co/datasets/sofieneb/uni2h_features) |
 | Virchow2 | 2560 | 224 px | [sofieneb/virchow2_features](https://huggingface.co/datasets/sofieneb/virchow2_features) |
+| Gigapath | 1536 | 256 px | [sofieneb/gigapath_features](https://huggingface.co/datasets/sofieneb/gigapath_features) |
 
 **More encoders are coming soon.**
 
